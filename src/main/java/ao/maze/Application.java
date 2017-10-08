@@ -6,8 +6,8 @@ import javax.swing.*;
 
 public class Application {
 
-    private static final int FRAME_WIDTH = 700;
-    private static final int FRAME_HEIGHT = 700;
+    private static final int FRAME_WIDTH = 620;
+    private static final int FRAME_HEIGHT = 420;
 
     private static final int MAZE_WIDTH = 15;
     private static final int MAZE_HEIGHT = 11;
