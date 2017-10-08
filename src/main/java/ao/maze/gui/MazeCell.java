@@ -5,12 +5,13 @@ import java.awt.geom.Line2D;
 
 public class MazeCell {
 
-    public static final int CELL_SIDE_LENGTH = 30;
+    static final int CELL_SIDE_LENGTH = 30;
 
-    private final Shape leftSide;
-    private final Shape topSide;
-    private final Shape rightSide;
-    private final Shape bottomSide;
+    private Shape leftSide;
+    private Shape topSide;
+    private Shape rightSide;
+    private Shape bottomSide;
+    private Player player;
 
     MazeCell(int x, int y) {
         leftSide = new Line2D.Double(x, y, x, y + CELL_SIDE_LENGTH);
@@ -34,4 +35,33 @@ public class MazeCell {
     public Shape getBottomSide() {
         return bottomSide;
     }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    boolean isPlayerInCell() {
+        return player != null;
+    }
+
+    void removeLeftSide() {
+        leftSide = null;
+    }
+
+    void removeTopSide() {
+        topSide = null;
+    }
+
+    void removeRightSide() {
+        rightSide = null;
+    }
+
+    void removeBottomSide() {
+        bottomSide = null;
+    }
+
 }

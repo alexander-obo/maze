@@ -6,47 +6,24 @@ import java.awt.geom.Ellipse2D;
 public class Player {
 
     private final int diameter;
+    private final Color color;
     private Shape shape;
 
-    Player(int radius) {
+    Player(int radius, Color color) {
         diameter = radius * 2;
+        this.color = color;
     }
 
     Shape getShape() {
         return shape;
     }
 
-    void stepLeft() {
-        int currentX = shape.getBounds().x;
-        int newX = currentX - MazeCell.CELL_SIDE_LENGTH;
-        int currentY = shape.getBounds().y;
-        moveTo(newX, currentY);
-    }
-
-    void stepUp() {
-        int currentX = shape.getBounds().x;
-        int currentY = shape.getBounds().y;
-        int newY = currentY - MazeCell.CELL_SIDE_LENGTH;
-        moveTo(currentX, newY);
-    }
-
-    void stepRight() {
-        int currentX = shape.getBounds().x;
-        int newX = currentX + MazeCell.CELL_SIDE_LENGTH;
-        int currentY = shape.getBounds().y;
-        moveTo(newX, currentY);
-    }
-
-    void stepDown() {
-        int currentX = shape.getBounds().x;
-        int currentY = shape.getBounds().y;
-        int newY = currentY + MazeCell.CELL_SIDE_LENGTH;
-        moveTo(currentX, newY);
+    Color getColor() {
+        return color;
     }
 
     void moveTo(int x, int y) {
         shape = new Ellipse2D.Double(x, y, diameter, diameter);
     }
-
 
 }
