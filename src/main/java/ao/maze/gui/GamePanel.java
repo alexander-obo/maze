@@ -52,6 +52,11 @@ public class GamePanel extends JPanel {
                     }
                 }
                 repaint();
+                if (maze.getMatrix()[maze.getPlayerCurrentCellY()][maze.getPlayerCurrentCellX()] == maze.getExitCell()) {
+                    JOptionPane.showMessageDialog(getParent(), "You win!");
+                    // TODO check if this is correct way to shut down application
+                    System.exit(0);
+                }
             }
         });
     }

@@ -8,6 +8,7 @@ public class Maze {
     private int playerCurrentCellX;
     private int playerCurrentCellY;
     private Player player;
+    private MazeCell exitCell;
 
     Maze(int gameFieldX, int gameFieldY, int mazeWidth, int mazeHeight, Player player) {
         maze = new MazeCell[mazeHeight][mazeWidth];
@@ -60,7 +61,8 @@ public class Maze {
         }
         int exitX = mazeWidth - 1;
         int exitY = random.nextInt(mazeHeight);
-        maze[exitY][exitX].removeRightSide();
+        exitCell = maze[exitY][exitX];
+        exitCell.removeRightSide();
     }
 
     MazeCell[][] getMatrix() {
@@ -81,6 +83,10 @@ public class Maze {
 
     void setPlayerCurrentCellY(int playerCurrentCellY) {
         this.playerCurrentCellY = playerCurrentCellY;
+    }
+
+    MazeCell getExitCell() {
+        return exitCell;
     }
 
     private boolean isUnvisitedCellsExist() {
