@@ -16,7 +16,7 @@ public class Application {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame();
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            frame.setTitle("Maze");
+            frame.setTitle("MazeModel");
             frame.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 
             /* Menu initializing */

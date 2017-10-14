@@ -5,17 +5,28 @@ import java.awt.geom.Ellipse2D;
 
 public class Player {
 
+    private int x;
+    private int y;
     private final int diameter;
     private final Color color;
-    private Shape shape;
+//    private Shape shape;
 
     Player(int radius, Color color) {
         diameter = radius * 2;
         this.color = color;
     }
 
-    Shape getShape() {
-        return shape;
+//    Shape getShape() {
+//        return shape;
+//    }
+
+
+    int getX() {
+        return x;
+    }
+
+    int getY() {
+        return y;
     }
 
     Color getColor() {
@@ -23,7 +34,9 @@ public class Player {
     }
 
     void moveTo(int x, int y) {
-        shape = new Ellipse2D.Double(x, y, diameter, diameter);
+        this.x = x;
+        this.y = y;
+//        shape = new Ellipse2D.Double(x, y, diameter, diameter);
     }
 
 }
