@@ -48,7 +48,6 @@ public class GamePanel extends JPanel {
                 repaint();
                 if (player.getX() == maze.getExitCell().getX() && player.getY() == maze.getExitCell().getY()) {
                     JOptionPane.showMessageDialog(getParent(), "You win!");
-                    // TODO check if this is correct way to shut down application
                     System.exit(0);
                 }
             }
