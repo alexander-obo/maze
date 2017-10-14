@@ -1,12 +1,12 @@
 package ao.maze.gui;
 
-import ao.maze.generators.AbstractMazeGenerator;
+import ao.maze.generators.MazeGenerator;
 import ao.maze.generators.SimpleMazeGenerator;
 import ao.maze.models.MazeModel;
 
 public class DesktopMaze {
 
-    private AbstractMazeGenerator mazeGenerator;
+    private MazeGenerator mazeGenerator;
     private MazeModel mazeModel;
     private DesktopMazeCell[][] maze;
     private DesktopMazeCell enterCell;

@@ -10,7 +10,7 @@ import java.util.Random;
 
 import static ao.maze.generators.Util.*;
 
-public class SimpleMazeGenerator extends AbstractMazeGenerator {
+public class SimpleMazeGenerator implements MazeGenerator {
 
     /**
      * MazeModel generation algorithm has been took from here: https://habrahabr.ru/post/262345/
