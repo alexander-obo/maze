@@ -16,6 +16,7 @@ public class GamePanel extends JPanel {
 
     private final Player player;
     private final DesktopMaze maze;
+    private boolean fogOfWarEnabled;
 
     public GamePanel(int mazeWidth, int mazeHeight) {
         maze = new DesktopMaze(GAME_FIELD_X, GAME_FIELD_Y, mazeWidth, mazeHeight);
@@ -54,6 +55,16 @@ public class GamePanel extends JPanel {
         });
     }
 
+    public void enableFogOfWar() {
+        fogOfWarEnabled = true;
+        repaint();
+    }
+
+    public void disableFogOfWar() {
+        fogOfWarEnabled = false;
+        repaint();
+    }
+
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
@@ -64,33 +75,69 @@ public class GamePanel extends JPanel {
         for (int y = 0; y < mazeMatrix.length; y++) {
             for (int x = 0; x < mazeMatrix[y].length; x++) {
                 DesktopMazeCell cell = mazeMatrix[y][x];
-                if (cell.getLeftSide() != null) {
-                    graphics2D.draw(cell.getLeftSide());
-                }
-                if (cell.getTopSide() != null) {
-                    graphics2D.draw(cell.getTopSide());
-                }
-                if (cell.getRightSide() != null) {
-                    graphics2D.draw(cell.getRightSide());
-                }
-                if (cell.getBottomSide() != null) {
-                    graphics2D.draw(cell.getBottomSide());
-                }
-                if (player.getY() == y && player.getX() == x) {
-                    Color defaultColor = graphics2D.getColor();
-                    graphics2D.setColor(player.getColor());
-                    final int playerShapeLeftTopX = GAME_FIELD_X + DesktopMazeCell.CELL_SIDE_LENGTH * x + 5;
-                    final int playerShapeLeftTopY = GAME_FIELD_Y + DesktopMazeCell.CELL_SIDE_LENGTH * y + 5;
-                    final Shape playerShape = new Ellipse2D.Double(
-                            playerShapeLeftTopX,
-                            playerShapeLeftTopY,
-                            player.getDiameter(),
-                            player.getDiameter());
-                    graphics2D.fill(playerShape);
-                    graphics2D.setColor(defaultColor);
+                if (!fogOfWarEnabled) {
+                    drawCell(graphics2D, cell);
+                    if (player.getY() == y && player.getX() == x) {
+                        drawPlayer(graphics2D, x, y);
+                    }
+                } else {
+                    if (player.getY() == y && player.getX() == x) {
+                        if (cell.getLeftSide() != null) {
+                            graphics2D.draw(cell.getLeftSide());
+                        } else if (x > 0) {
+                            drawCell(graphics2D, mazeMatrix[y][x - 1]);
+                        }
+                        if (cell.getTopSide() != null) {
+                            graphics2D.draw(cell.getTopSide());
+                        } else if (y > 0) {
+                            drawCell(graphics2D, mazeMatrix[y - 1][x]);
+                        }
+                        if (cell.getRightSide() != null) {
+                            graphics2D.draw(cell.getRightSide());
+                        } else if (x < mazeMatrix[y].length - 1) {
+                            drawCell(graphics2D, mazeMatrix[y][x + 1]);
+                        }
+                        if (cell.getBottomSide() != null) {
+                            graphics2D.draw(cell.getBottomSide());
+                        } else if (y < mazeMatrix.length - 1) {
+                            drawCell(graphics2D, mazeMatrix[y + 1][x]);
+                        }
+                        drawPlayer(graphics2D, x, y);
+
+                        return;
+                    }
                 }
             }
         }
+    }
+
+    private void drawCell(Graphics2D graphics2D, DesktopMazeCell cell) {
+        if (cell.getLeftSide() != null) {
+            graphics2D.draw(cell.getLeftSide());
+        }
+        if (cell.getTopSide() != null) {
+            graphics2D.draw(cell.getTopSide());
+        }
+        if (cell.getRightSide() != null) {
+            graphics2D.draw(cell.getRightSide());
+        }
+        if (cell.getBottomSide() != null) {
+            graphics2D.draw(cell.getBottomSide());
+        }
+    }
+
+    private void drawPlayer(Graphics2D graphics2D, int x, int y) {
+        Color defaultColor = graphics2D.getColor();
+        graphics2D.setColor(player.getColor());
+        final int playerShapeLeftTopX = GAME_FIELD_X + DesktopMazeCell.CELL_SIDE_LENGTH * x + 5;
+        final int playerShapeLeftTopY = GAME_FIELD_Y + DesktopMazeCell.CELL_SIDE_LENGTH * y + 5;
+        final Shape playerShape = new Ellipse2D.Double(
+                playerShapeLeftTopX,
+                playerShapeLeftTopY,
+                player.getDiameter(),
+                player.getDiameter());
+        graphics2D.fill(playerShape);
+        graphics2D.setColor(defaultColor);
     }
 
 }

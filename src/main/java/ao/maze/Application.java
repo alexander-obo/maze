@@ -30,6 +30,14 @@ public class Application {
             GamePanel gamePanel = new GamePanel(MAZE_WIDTH, MAZE_HEIGHT);
             frame.add(gamePanel);
 
+            fogOfWarMenuItem.addItemListener(e -> {
+                if (fogOfWarMenuItem.isSelected()) {
+                    gamePanel.enableFogOfWar();
+                } else {
+                    gamePanel.disableFogOfWar();
+                }
+            });
+
             frame.addKeyListener(gamePanel.getKeyListeners()[0]);
 
             frame.setVisible(true);
