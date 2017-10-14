@@ -24,7 +24,7 @@ public class GamePanel extends JPanel {
 
         addKeyListener(new KeyAdapter() {
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyPressed(KeyEvent e) {
                 int x = player.getX();
                 int y = player.getY();
                 if (e.getKeyCode() == KeyEvent.VK_LEFT && x > 0) {
