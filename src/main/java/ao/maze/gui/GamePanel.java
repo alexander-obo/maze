@@ -14,8 +14,8 @@ public class GamePanel extends JPanel {
     private static final int PLAYER_SHAPE_RADIUS = 10;
     private static final Color PLAYER_COLOR = Color.RED;
 
-    private Player player;
-    private DesktopMaze maze;
+    private final Player player;
+    private final DesktopMaze maze;
 
     public GamePanel(int mazeWidth, int mazeHeight) {
         maze = new DesktopMaze(GAME_FIELD_X, GAME_FIELD_Y, mazeWidth, mazeHeight);
@@ -77,16 +77,16 @@ public class GamePanel extends JPanel {
                     graphics2D.draw(cell.getBottomSide());
                 }
                 if (player.getY() == y && player.getX() == x) {
-                    final int playerShapeLeftTopX = GAME_FIELD_X + DesktopMazeCell.CELL_SIDE_LENGTH * x + 5;
-                    final int playerShapeLeftTopY = GAME_FIELD_Y + DesktopMazeCell.CELL_SIDE_LENGTH * y + 5;
                     Color defaultColor = graphics2D.getColor();
                     graphics2D.setColor(player.getColor());
-                    graphics2D.fill(new Ellipse2D.Double(
+                    final int playerShapeLeftTopX = GAME_FIELD_X + DesktopMazeCell.CELL_SIDE_LENGTH * x + 5;
+                    final int playerShapeLeftTopY = GAME_FIELD_Y + DesktopMazeCell.CELL_SIDE_LENGTH * y + 5;
+                    final Shape playerShape = new Ellipse2D.Double(
                             playerShapeLeftTopX,
                             playerShapeLeftTopY,
-                            PLAYER_SHAPE_RADIUS * 2,
-                            PLAYER_SHAPE_RADIUS * 2)
-                    );
+                            player.getDiameter(),
+                            player.getDiameter());
+                    graphics2D.fill(playerShape);
                     graphics2D.setColor(defaultColor);
                 }
             }

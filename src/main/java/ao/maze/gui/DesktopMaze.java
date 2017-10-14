@@ -6,11 +6,11 @@ import ao.maze.models.MazeModel;
 
 public class DesktopMaze {
 
-    private MazeGenerator mazeGenerator;
-    private MazeModel mazeModel;
-    private DesktopMazeCell[][] maze;
-    private DesktopMazeCell enterCell;
-    private DesktopMazeCell exitCell;
+    private final MazeGenerator mazeGenerator;
+    private final MazeModel mazeModel;
+    private final DesktopMazeCell[][] maze;
+    private final DesktopMazeCell enterCell;
+    private final DesktopMazeCell exitCell;
 
     DesktopMaze(int gameFieldX, int gameFieldY, int mazeWidth, int mazeHeight) {
         mazeGenerator = new SimpleMazeGenerator();

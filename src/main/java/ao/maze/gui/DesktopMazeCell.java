@@ -59,19 +59,19 @@ public class DesktopMazeCell {
         return y;
     }
 
-    public Shape getLeftSide() {
+    Shape getLeftSide() {
         return leftSide;
     }
 
-    public Shape getTopSide() {
+    Shape getTopSide() {
         return topSide;
     }
 
-    public Shape getRightSide() {
+    Shape getRightSide() {
         return rightSide;
     }
 
-    public Shape getBottomSide() {
+    Shape getBottomSide() {
         return bottomSide;
     }
 

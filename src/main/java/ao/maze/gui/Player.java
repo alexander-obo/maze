@@ -1,7 +1,6 @@
 package ao.maze.gui;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 
 public class Player {
 
@@ -9,17 +8,11 @@ public class Player {
     private int y;
     private final int diameter;
     private final Color color;
-//    private Shape shape;
 
     Player(int radius, Color color) {
         diameter = radius * 2;
         this.color = color;
     }
-
-//    Shape getShape() {
-//        return shape;
-//    }
-
 
     int getX() {
         return x;
@@ -29,6 +22,10 @@ public class Player {
         return y;
     }
 
+    int getDiameter() {
+        return diameter;
+    }
+
     Color getColor() {
         return color;
     }
@@ -36,7 +33,6 @@ public class Player {
     void moveTo(int x, int y) {
         this.x = x;
         this.y = y;
-//        shape = new Ellipse2D.Double(x, y, diameter, diameter);
     }
 
 }
