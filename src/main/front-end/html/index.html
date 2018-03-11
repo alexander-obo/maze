@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maze</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+<div id="settingsPanel">
+    <label for="width">Width:</label><input id="width" value="7">
+    <label for="height">Height:</label><input id="height" value="7">
+    <button onclick="startGame(document.getElementById('width').value, document.getElementById('height').value)">
+        Generate maze
+    </button>
+</div>
+<div id="gamePanel">
+</div>
+<script src="../js/utils.js"></script>
+<script src="../js/models.js"></script>
+<script src="../js/script.js"></script>
+</body>
+</html>
